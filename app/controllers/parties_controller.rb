@@ -9,11 +9,12 @@ class PartiesController < ApplicationController
 
     def new
         @party = Party.new
+        @party.build_category
     end
 
     def create
         @party = Party.new(party_params)
-        if @party.valid?
+        if @party.save!
             @party.save
             redirect_to party_path(@party)
         else
@@ -25,7 +26,7 @@ class PartiesController < ApplicationController
     private
 
     def party_params
-        params.require(:party).permit(:name, :date, :budget, :private)
+        params.require(:party).permit(:name, :date, :budget, :private, category_attributes:[:name])
     end
     
 end

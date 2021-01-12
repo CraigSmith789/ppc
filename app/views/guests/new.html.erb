@@ -1,0 +1,7 @@
+this is new guest
+
+<%=form_for [@party, @guest] do |f|%>
+<%= f.label(:name) %> 
+<%= f.text_field :name %>
+<%= f.submit %>
+<% end %>
